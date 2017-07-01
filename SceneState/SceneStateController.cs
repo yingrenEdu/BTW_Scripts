@@ -1,42 +1,50 @@
-﻿using System.Collections;
+﻿/********************************************************************
+  filename: SceneStateController
+    author: Roy Zhu
+
+   purpose: 场景状态管理器 
+*********************************************************************/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace BTW.Framework {
     public class SceneStateController {
-        private ISceneState state;
-        private AsyncOperation ao;
+        private ISceneState mState;
+        private AsyncOperation mAO;
         /// <summary>
         /// 是否已经加载过场景
         /// </summary>
-        private bool isRunEnter;
+        private bool mIsRunEnter;
 
         public void SetState(ISceneState _state, bool _isLoadScene = true) {
-            if (state != null) {
-                state.StateExit();
+            if (mState != null) {
+                // 设置新状态之前先退出前一个旧状态
+                mState.StateExit();
             }
-            state = _state;
+            mState = _state;
 
             if (_isLoadScene) {
-                ao = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(state.SceneName);
-                isRunEnter = false;
+                mAO = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(mState.MSceneName);
+                mIsRunEnter = false;
             }
             else {
-                isRunEnter = true;
-                state.StateEnter();
+                mIsRunEnter = true;
+                mState.StateEnter();
             }
         }
 
         public void StateUpdate() {
-            if (ao != null && ao.isDone == false) return;
+            if (mAO != null && mAO.isDone == false) return;
 
-            if (ao != null && ao.isDone && isRunEnter == false) {
-                isRunEnter = true;
-                state.StateEnter();
+            if (mAO != null && mAO.isDone && mIsRunEnter == false) {
+                mIsRunEnter = true;
+                mState.StateEnter();
             }
 
-            if (state != null) {
-                state.StateUpdate();
+            if (mState != null) {
+                mState.StateUpdate();
             }
         }
     }

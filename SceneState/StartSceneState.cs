@@ -5,24 +5,24 @@ using UnityEngine.UI;
 
 namespace BTW.Framework {
     public class StartSceneState:ISceneState {
-        private Image logo;
-        private float smoothTime = 1f;
-        private float waitTime = 3f;
+        private Image mLogo;
+        private float mSmoothTime = 1f;
+        private float mWaitTime = 3f;
 
         public StartSceneState(SceneStateController _controller):base("01StartScene", _controller) {
         }
 
         public override void StateEnter() {
-            logo = GameObject.Find("Logo").GetComponent<Image>();
-            logo.color = Color.black;
+            mLogo = GameObject.Find("Logo").GetComponent<Image>();
+            mLogo.color = Color.black;
         }
 
         public override void StateUpdate() {
             base.StateUpdate();
-            logo.color = Color.Lerp(logo.color, Color.white, smoothTime * Time.deltaTime);
-            waitTime -= Time.deltaTime;
-            if (waitTime < 0) {
-                SSController.SetState(new MainMenuSceneState(SSController));
+            mLogo.color = Color.Lerp(mLogo.color, Color.white, mSmoothTime * Time.deltaTime);
+            mWaitTime -= Time.deltaTime;
+            if (mWaitTime < 0) {
+                MSceneSController.SetState(new MainMenuSceneState(MSceneSController));
             }
         }
     }

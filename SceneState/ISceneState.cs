@@ -4,19 +4,19 @@ using UnityEngine;
 
 namespace BTW.Framework {
     public class ISceneState {
-        private string sceneName;
-        private SceneStateController sceneStateController;
-        protected SceneStateController SSController {
-            get { return sceneStateController; }
+        private string mSceneName;
+        protected SceneStateController mSceneStateController;
+        protected SceneStateController MSceneSController {
+            get { return mSceneStateController; }
         }
 
-        public string SceneName {
-            get { return sceneName; }
+        public string MSceneName {
+            get { return mSceneName; }
         }
 
-        public ISceneState(string _sceneName, SceneStateController _controller) {
-            sceneName = _sceneName;
-            sceneStateController = _controller;
+        public ISceneState(string _mSceneName, SceneStateController _controller) {
+            mSceneName = _mSceneName;
+            mSceneStateController = _controller;
         }
 
         public virtual void StateEnter() {

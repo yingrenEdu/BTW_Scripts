@@ -4,19 +4,19 @@ using UnityEngine;
 
 namespace BTW.Framework {
     public class GameLoop : MonoBehaviour {
-        private SceneStateController sceneStateController;
+        private SceneStateController mSceneStateController;
 
         private void Awake() {
             DontDestroyOnLoad(this.gameObject);
         }
 
         void Start() {
-            sceneStateController = new SceneStateController();
-            sceneStateController.SetState(new StartSceneState(sceneStateController), false);
+            mSceneStateController = new SceneStateController();
+            mSceneStateController.SetState(new StartSceneState(mSceneStateController), false);
         }
 
         void Update() {
-            sceneStateController.StateUpdate();
+            mSceneStateController.StateUpdate();
         }
     }
 }
