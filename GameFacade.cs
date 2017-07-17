@@ -71,6 +71,11 @@ namespace BTW.Framework {
             mGameStateInfoUI.Release();
             mSoldierInfoUI.Release();
         }
+
+        // TODO:
+        public Vector3 GetElfTargetPosition() {
+            return Vector3.zero;
+        }
     }
 }
 

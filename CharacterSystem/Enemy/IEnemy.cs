@@ -1,16 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using BTW.Game;
 using UnityEngine;
 
-public class IEnemy : MonoBehaviour {
+namespace BTW.Framework {
+    public class IEnemy : ICharacter {
+        protected EnemyFSMSystem mFsmSystem;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        public IEnemy () : base() {
+            MakeFSM();
+        }
+
+        public void UpdateAIFSM(List<ICharacter> _targets) {
+            mFsmSystem.CurrentState.Reason(_targets);
+            mFsmSystem.CurrentState.Act(_targets);
+        }
+
+        private void MakeFSM () {
+            mFsmSystem = new EnemyFSMSystem();
+
+            EnemyIdleState idleState = new EnemyIdleState(mFsmSystem, this);
+            idleState.AddTransition(EnemyTransition.SeeEnemy, EnemyStateID.Chase);
+
+            EnemyChaseState chaseState = new EnemyChaseState(mFsmSystem, this);
+            chaseState.AddTransition(EnemyTransition.CanAttack, EnemyStateID.Attack);
+            chaseState.AddTransition(EnemyTransition.NoEnemy, EnemyStateID.Idle);
+
+            EnemyAttackState attackState = new EnemyAttackState(mFsmSystem, this);
+            attackState.AddTransition(EnemyTransition.SeeEnemy, EnemyStateID.Chase);
+            attackState.AddTransition(EnemyTransition.NoEnemy, EnemyStateID.Idle);
+
+            mFsmSystem.AddStates(idleState, chaseState, attackState);
+        }
+    }
 }

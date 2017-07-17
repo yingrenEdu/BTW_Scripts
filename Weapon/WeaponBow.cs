@@ -4,9 +4,16 @@ using UnityEngine;
 
 namespace BTW.Framework {
     public class WeaponBow : IWeapon {
-        public override void Fire(Vector3 _targetPos) {
-            Debug.Log("<color=green>" + "显示Bow攻击特效{0}" + "</color>");
-            Debug.Log("<color=green>" + "播放Bow声音{0}" + "</color>");
+        protected override void SetEffectDisplayTime() {
+            mEffectDisplayTime = 0.2f;
+        }
+
+        protected override void PlayBulletEffect(Vector3 _targetPos) {
+            DoPlayBulletEffect(_targetPos, 0.5f);
+        }
+
+        protected override void PlaySound() {
+            DoPlaySound("GunShot");
         }
     }
 }
