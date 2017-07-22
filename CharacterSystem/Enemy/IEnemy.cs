@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using BTW.Game;
 using UnityEngine;
 
-namespace BTW.Framework {
-    public class IEnemy : ICharacter {
+namespace BTW.Game {
+    public abstract class IEnemy : ICharacter {
         protected EnemyFSMSystem mFsmSystem;
 
         public IEnemy () : base() {
             MakeFSM();
         }
 
-        public void UpdateAIFSM(List<ICharacter> _targets) {
+        public override void UpdateAIFSM(List<ICharacter> _targets) {
             mFsmSystem.CurrentState.Reason(_targets);
             mFsmSystem.CurrentState.Act(_targets);
         }
@@ -32,5 +32,23 @@ namespace BTW.Framework {
 
             mFsmSystem.AddStates(idleState, chaseState, attackState);
         }
+
+        public override void UnderAttack(float _damage) {
+            base.UnderAttack(_damage);
+
+            if (mICharacterAttribute.CurrentHp <= 0) {
+                PlaySound();
+                PlayEffect();
+                Killed();
+            }
+        }
+
+
+
+
+        protected abstract void PlaySound();
+        protected abstract void PlayEffect();
+
+
     }
 }

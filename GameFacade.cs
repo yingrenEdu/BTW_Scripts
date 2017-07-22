@@ -6,9 +6,10 @@
 *********************************************************************/
 using System.Collections;
 using System.Collections.Generic;
+using BTW.Framework;
 using UnityEngine;
 
-namespace BTW.Framework {
+namespace BTW.Game {
     public class GameFacade {
         private static GameFacade mInstance = new GameFacade();
         public static GameFacade Instance { get { return mInstance; } }

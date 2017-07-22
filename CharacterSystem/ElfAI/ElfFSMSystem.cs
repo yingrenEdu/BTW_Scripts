@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BTW.Framework {
+namespace BTW.Game {
     public class ElfFSMSystem {
         private List<IElfState> mStates = new List<IElfState>();
         private IElfState mCurrentState;

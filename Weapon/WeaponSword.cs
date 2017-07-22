@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BTW.Framework {
+namespace BTW.Game {
     public class WeaponSword : IWeapon {
         protected override void SetEffectDisplayTime() {
             throw new System.NotImplementedException();

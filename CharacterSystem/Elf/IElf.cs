@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BTW.Framework {
+namespace BTW.Game {
     public class IElf : ICharacter {
         protected ElfFSMSystem mFsmSystem;
 
@@ -10,7 +10,7 @@ namespace BTW.Framework {
             MakeFSM();
         }
 
-        public void UpdateAIFSM (List<ICharacter> _targets) {
+        public override void UpdateAIFSM (List<ICharacter> _targets) {
             mFsmSystem.CurrentState.Reason(_targets);
             mFsmSystem.CurrentState.Act(_targets);
         }
@@ -28,6 +28,15 @@ namespace BTW.Framework {
             attackState.AddTransition(ElfTransition.LostEnemy, ElfStateID.Chase);
 
             mFsmSystem.AddStates(chaseState, attackState);
+        }
+
+        public override void UnderAttack(float _damage) {
+            base.UnderAttack(_damage);
+
+            if (mICharacterAttribute.CurrentHp <= 0) {
+                
+                Killed();
+            }
         }
     }
 }

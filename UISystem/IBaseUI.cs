@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace  BTW.Framework {
+namespace  BTW.Game {
     public abstract class IBaseUI {
         public virtual void Init() { }
         public virtual void Update() { }

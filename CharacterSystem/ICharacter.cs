@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace BTW.Framework {
+namespace BTW.Game {
     public abstract class ICharacter {
         protected ICharacterAttribute mICharacterAttribute;
         protected GameObject mGameObject;
@@ -13,6 +13,12 @@ namespace BTW.Framework {
         protected Animation mAnim;
 
         public IWeapon Weapon { set { mWeapon = value; } }
+
+        public void Update() {
+            mWeapon.Update();
+        }
+
+        public abstract void UpdateAIFSM(List<ICharacter> _characters);
 
         public Vector3 Position {
             get {
@@ -28,8 +34,23 @@ namespace BTW.Framework {
             get { return mWeapon.AtkRange; }
         }
 
+        /// <summary>
+        /// 被攻击
+        /// </summary>
+        /// <param name="_damage"></param>
+        public virtual void UnderAttack(float _damage) {
+            mICharacterAttribute.TakeDamage(_damage);
+            
+            
+        }
+
+        public void Killed () { }
+
         public void Attack (ICharacter _target) {
             mWeapon.Fire(_target.Position);
+            mGameObject.transform.LookAt(_target.Position);
+            PlayAnimation("attack");
+            UnderAttack(mWeapon.AtkPower + mICharacterAttribute.CritValue);
         }
 
         public void PlayAnimation (string _animName) {
@@ -38,6 +59,17 @@ namespace BTW.Framework {
 
         public void MoveTo(Vector3 _targetPos) {
             mNavAgent.SetDestination(_targetPos);
+            PlayAnimation("move");
+        }
+
+        protected void DoPlaySound (string _soundName) {
+            AudioClip clip = null;
+            mAudio.clip = clip;
+            mAudio.Play();
+        }
+
+        protected void DoPlayEffect (string _effectName) {
+
         }
     }
 }

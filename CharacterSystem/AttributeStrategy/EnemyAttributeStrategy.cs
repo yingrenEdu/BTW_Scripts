@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BTW.Framework {
+namespace BTW.Game {
 
     public class EnemyAttributeStrategy : IAttributeStrategy {
         public float GetExtralHPValue(int _level) {
@@ -11,6 +11,10 @@ namespace BTW.Framework {
 
         public float GetDamageDecreaseValue(int _level) {
             return 0;
+        }
+
+        public float GetCritDamage(float _critRate) {
+            throw new System.NotImplementedException();
         }
 
         public float GetCritDamage(int _critRate) {

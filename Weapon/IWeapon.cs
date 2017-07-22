@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BTW.Framework {
+namespace BTW.Game {
+    public enum WeaponType {
+        Sword,
+    }
+
     public abstract class IWeapon {
         protected float mAtkPower;
         protected float mAtkRange;
@@ -17,6 +21,7 @@ namespace BTW.Framework {
 
         protected float mEffectDisplayTime = 0;
 
+        public float AtkPower { get { return mAtkPower; } }
         public float AtkRange {
             get { return mAtkRange; }
         }

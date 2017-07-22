@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BTW.Framework {
+namespace BTW.Game {
     public class StartSceneState:ISceneState {
         private Image mLogo;
         private float mSmoothTime = 1f;

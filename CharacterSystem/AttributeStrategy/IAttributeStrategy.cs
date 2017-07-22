@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BTW.Framework {
+namespace BTW.Game {
     public interface IAttributeStrategy {
         /// <summary>
-        /// 获得增加的HP最大值
+        /// 根据等级获得增加的HP最大值
         /// </summary>
         /// <returns></returns>
         float GetExtralHPValue(int _level);
@@ -19,7 +19,7 @@ namespace BTW.Framework {
         /// </summary>
         /// <param name="_critRate"></param>
         /// <returns></returns>
-        float GetCritDamage(int _critRate);
+        float GetCritDamage(float _critRate);
     }
 }
 

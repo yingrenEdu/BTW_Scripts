@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BTW.Framework {
+namespace BTW.Game {
     public class BattleSceneState : ISceneState {
         public BattleSceneState(SceneStateController _controller) : base("03BattleScene", _controller) {
 

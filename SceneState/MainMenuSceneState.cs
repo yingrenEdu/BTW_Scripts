@@ -4,7 +4,7 @@ using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BTW.Framework {
+namespace BTW.Game {
     public class MainMenuSceneState : ISceneState {
         public MainMenuSceneState(SceneStateController _controller) : base("02MainMenuScene", _controller) {
         }

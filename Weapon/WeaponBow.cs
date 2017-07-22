@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BTW.Framework {
+namespace BTW.Game {
     public class WeaponBow : IWeapon {
         protected override void SetEffectDisplayTime() {
             mEffectDisplayTime = 0.2f;

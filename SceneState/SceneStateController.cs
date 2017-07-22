@@ -7,9 +7,10 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using BTW.Game;
 using UnityEngine;
 
-namespace BTW.Framework {
+namespace BTW.Game {
     public class SceneStateController {
         private ISceneState mState;
         private AsyncOperation mAO;
