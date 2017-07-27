@@ -48,10 +48,10 @@ namespace BTW.Framework {
                 Debug.LogError("无法加载资源,路径: " + _path);
                 return null;
             }
-            return UnityEngine.Object.Instantiate(o) as GameObject;
+            return Object.Instantiate(o) as GameObject;
         }
 
-        private UnityEngine.Object LoadAsset (string _path) {
+        private Object LoadAsset (string _path) {
             var o = Resources.Load(_path);
             if (o == null) {
                 Debug.LogError("无法加载资源,路径: " + _path);

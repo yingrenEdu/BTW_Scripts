@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using BTW.Framework;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,7 +13,25 @@ namespace BTW.Game {
         protected IWeapon mWeapon;
         protected Animation mAnim;
 
-        public IWeapon Weapon { set { mWeapon = value; } }
+        public IWeapon Weapon {
+            set {
+                mWeapon = value;
+                mWeapon.Owner = this;
+                var child = UnityTool.FindChild(mGameObject, "weapon-point");
+                UnityTool.Attach(child, mWeapon.GO);
+            }
+        }
+
+
+        public GameObject GO {
+            set {
+                mGameObject = value;
+                mNavAgent = mGameObject.GetComponent<NavMeshAgent>();
+                mAudio = mGameObject.GetComponent<AudioSource>();
+                mAnim = mGameObject.GetComponentInChildren<Animation>();
+            }
+        }
+
 
         public void Update() {
             mWeapon.Update();

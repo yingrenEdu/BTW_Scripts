@@ -30,7 +30,14 @@ namespace BTW.Game {
 
             ICharacterAttribute attr = new IEnemyAttribute(new ElfAttributeStrategy(), mName, mMaxHP, mMoveSpeed, mIconSprite, mPrefabName);
 
-            return null;
+            GameObject characterGO = FactoryManager.AssetFactory.LoadElf(mPrefabName);
+            characterGO.transform.position = _spawnPosition;
+            character.GO = characterGO;
+
+            IWeapon weapon = FactoryManager.WeaponFactory.CreateWeapon(_weaponType);
+            character.Weapon = weapon;
+            
+            return character;
         }
     }
 }

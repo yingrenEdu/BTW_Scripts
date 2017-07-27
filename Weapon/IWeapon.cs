@@ -5,6 +5,7 @@ using UnityEngine;
 namespace BTW.Game {
     public enum WeaponType {
         Sword,
+        Bow,
     }
 
     public abstract class IWeapon {
@@ -19,7 +20,22 @@ namespace BTW.Game {
         protected Light mLight;
         protected AudioSource mAudio;
 
+        public ICharacter Owner { set { mOwner = value; } }
+        public GameObject GO { get { return mGameObject; } }
+
         protected float mEffectDisplayTime = 0;
+
+        public IWeapon(float _atkPower, float _atkRange, GameObject _gameObject) {
+            mAtkPower = _atkPower;
+            mAtkRange = _atkRange;
+            mGameObject = _gameObject;
+
+            var effect = mGameObject.transform.Find("Effect");
+            mParticle = effect.GetComponent<ParticleSystem>();
+            mLine = effect.GetComponent<LineRenderer>();
+            mLight = effect.GetComponent<Light>();
+            mAudio = effect.GetComponent<AudioSource>();
+        }
 
         public float AtkPower { get { return mAtkPower; } }
         public float AtkRange {
