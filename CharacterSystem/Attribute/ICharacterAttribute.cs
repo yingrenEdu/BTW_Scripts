@@ -23,12 +23,13 @@ namespace BTW.Game {
 
 
 
-        public ICharacterAttribute (IAttributeStrategy _mStrategy, string _name, int _hp, float _moveSpeed, string _iconSprite, string _prefabName) {
+        public ICharacterAttribute (IAttributeStrategy _mStrategy, int _lv, string _name, int _hp, float _moveSpeed, string _iconSprite, string _prefabName) {
             mName = _name;
             mMoveSpeed = _moveSpeed;
             mIconSprite = _iconSprite;
             mPrefabName = _prefabName;
             mStrategy = _mStrategy;
+            mLevel = _lv;
             // 这里采用这种赋值方法是假设创建出角色之后等级不会变化的情况
             // 如果等级需要变化，则需要在属性中直接通过GET方法取值
             // HP同理

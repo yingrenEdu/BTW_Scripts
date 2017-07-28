@@ -87,7 +87,7 @@ namespace BTW.Game {
 
         protected abstract void PlaySound ();
         protected void DoPlaySound (string _name) {
-            AudioClip clip = null; // TODO
+            AudioClip clip = FactoryManager.AssetFactory.LoadAudioClip(_name);
             mAudio.clip = clip;
             mAudio.Play();
         }

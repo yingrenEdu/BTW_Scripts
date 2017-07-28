@@ -13,6 +13,10 @@ namespace BTW.Game {
         protected IWeapon mWeapon;
         protected Animation mAnim;
 
+        public ICharacterAttribute CharacterAttr {
+            set { mICharacterAttribute = value; }
+        }
+
         public IWeapon Weapon {
             set {
                 mWeapon = value;
@@ -82,13 +86,15 @@ namespace BTW.Game {
         }
 
         protected void DoPlaySound (string _soundName) {
-            AudioClip clip = null;
+            var clip = FactoryManager.AssetFactory.LoadAudioClip(_soundName);
             mAudio.clip = clip;
             mAudio.Play();
         }
 
         protected void DoPlayEffect (string _effectName) {
-
+            var effectGo = FactoryManager.AssetFactory.LoadEffect(_effectName);
+            effectGo.transform.position = Position;
+            effectGo.AddComponent<DestoryByTime>();
         }
     }
 }

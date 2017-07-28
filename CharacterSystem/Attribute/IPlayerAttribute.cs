@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BTW.Game {
     public class IPlayerAttribute : ICharacterAttribute {
-        public IPlayerAttribute(IAttributeStrategy _mStrategy, string _name, int _hp, float _moveSpeed, string _iconSprite, string _prefabName) : base(_mStrategy, _name, _hp, _moveSpeed, _iconSprite, _prefabName) {
+        public IPlayerAttribute(IAttributeStrategy _mStrategy, int _lv, string _name, int _hp, float _moveSpeed, string _iconSprite, string _prefabName) : base(_mStrategy, _lv, _name, _hp, _moveSpeed, _iconSprite, _prefabName) {
         }
     }
 }
