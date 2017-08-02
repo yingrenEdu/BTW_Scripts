@@ -9,20 +9,9 @@ namespace BTW.Game {
         }
 
         public override void AddCharacterAttr() {
-            string mName = "";
-            int mMaxHP = 0;
-            float mMoveSpeed = 0;
-            string mIconSprite = "";
-
-            if (mType == typeof(ElfGhost)) {
-                mName = "Ghost";
-                mMaxHP = 100;
-                mMoveSpeed = 3;
-                mIconSprite = "";
-                mPrefabName = "";
-            }
-
-            ICharacterAttribute attr = new IElfAttribute(new ElfAttributeStrategy(), mLv, mName, mMaxHP, mMoveSpeed, mIconSprite, mPrefabName);
+            var baseAttr = FactoryManager.AttrFactory.GetCharacterBaseAttribute(mType);
+            mPrefabName = baseAttr.PrefabName;
+            ICharacterAttribute attr = new IElfAttribute(new ElfAttributeStrategy(), mLv, baseAttr);
             mCharacter.CharacterAttr = attr;
         }
 

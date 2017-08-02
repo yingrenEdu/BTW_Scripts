@@ -9,8 +9,7 @@ namespace BTW.Game {
     }
 
     public abstract class IWeapon {
-        protected float mAtkPower;
-        protected float mAtkRange;
+        protected WeaponBaseAttribute mBaseAttr;
         protected float mAtkPlusValue;
 
         protected GameObject mGameObject;
@@ -25,9 +24,8 @@ namespace BTW.Game {
 
         protected float mEffectDisplayTime = 0;
 
-        public IWeapon(float _atkPower, float _atkRange, GameObject _gameObject) {
-            mAtkPower = _atkPower;
-            mAtkRange = _atkRange;
+        public IWeapon (WeaponBaseAttribute _baseAttr, GameObject _gameObject) {
+            mBaseAttr = _baseAttr;
             mGameObject = _gameObject;
 
             var effect = mGameObject.transform.Find("Effect");
@@ -37,9 +35,9 @@ namespace BTW.Game {
             mAudio = effect.GetComponent<AudioSource>();
         }
 
-        public float AtkPower { get { return mAtkPower; } }
+        public float AtkPower { get { return mBaseAttr.AtkPower; } }
         public float AtkRange {
-            get { return mAtkRange; }
+            get { return mBaseAttr.AtkRange; }
         }
 
         public void Update () {

@@ -9,6 +9,11 @@ namespace BTW.Game {
         private static ICharacterFactory mElfFactory;
         private static ICharacterFactory mEnemyFactory;
         private static IWeaponFactory mWeaponFactory;
+        private static IAttributeFactory mAttributeFactory;
+
+        public static IAttributeFactory AttrFactory {
+            get { return mAttributeFactory ?? (mAttributeFactory = new AttributeFactory());}
+        }
 
         public static IAssetFactory AssetFactory {
             get { return mAssetFactory ?? (mAssetFactory = new ResourcesAssetFactory()); }

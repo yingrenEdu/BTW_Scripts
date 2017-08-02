@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BTW.Game {
     public class WeaponBow : IWeapon {
-        public WeaponBow (float _atkPower, float _atkRange, GameObject _gameObject) : base(_atkPower, _atkRange, _gameObject) {
+        public WeaponBow (WeaponBaseAttribute _baseAttr, GameObject _gameObject) : base(_baseAttr, _gameObject) {
         }
 
         protected override void SetEffectDisplayTime() {

@@ -10,21 +10,22 @@ namespace BTW.Game {
             IWeapon weapon = null;
             //string assetName = "";
             var weaopnGO = new GameObject();
+            var attr = FactoryManager.AttrFactory.GetWeaponBaseAttribute(_type);
             switch (_type) {
                 case WeaponType.Sword:
                     //assetName = "WeaopnSword";                   
                     weaopnGO = FactoryManager.AssetFactory.LoadWeapon("WeaopnSword");
-                    weapon = new WeaponSword(20, 5, weaopnGO);
+                    weapon = new WeaponSword(attr, weaopnGO);
                     break;
                 case WeaponType.Bow:
                     //assetName = "WeaopnBow";
                     weaopnGO = FactoryManager.AssetFactory.LoadWeapon("WeaopnBow");
-                    weapon = new WeaponSword(5, 20, weaopnGO);
+                    weapon = new WeaponBow(attr, weaopnGO);
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException("_type", _type, null);
             }
-
             //var weaopnGO = factory.LoadWeapon(assetName);
-
 
             return weapon;
         }
